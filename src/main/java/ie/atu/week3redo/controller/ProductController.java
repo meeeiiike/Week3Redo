@@ -1,6 +1,7 @@
 package ie.atu.week3redo.controller;
 
 import ie.atu.week3redo.model.Product;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +20,12 @@ public class ProductController {
         return productList;
     }
     @PostMapping("/addSingleProduct")
-    public List<Product> addProduct(){
-        productList.add(new Product("milk", 1.99));
-        return productList;
+    public Product addProduct(@Valid @RequestBody Product product){
+        productList.add(product);
+        return product;
     }
     @PostMapping("/addList")
-    public List<Product> addList(@RequestBody List<Product> product){
+    public List<Product> addList(@Valid @RequestBody List<Product> product){
         productList.addAll(product);
         return productList;
     }
