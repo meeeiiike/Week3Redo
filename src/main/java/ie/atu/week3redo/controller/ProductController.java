@@ -3,6 +3,7 @@ package ie.atu.week3redo.controller;
 import ie.atu.week3redo.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class ProductController {
     @PostMapping("/addSingleProduct")
     public List<Product> addProduct(){
         productList.add(new Product("milk", 1.99));
+        return productList;
+    }
+    @PostMapping("/addList")
+    public List<Product> addList(@RequestBody List<Product> product){
+        productList.addAll(product);
         return productList;
     }
 }
